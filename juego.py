@@ -14,7 +14,6 @@ def display_board(board):
             buttons[i][j].config(
                 text=button_text,
                 state=tk.DISABLED if button_text != ' ' else tk.NORMAL,
-                fg='white' if button_text == 'X' else 'red' if button_text == 'O' else 'white'
             )
 
 def check_winner(board, mark):
@@ -96,7 +95,7 @@ def make_move(row, col):
     buttons[row][col].config(
         text=current_player,
         state=tk.DISABLED,
-        fg='white' if current_player == 'X' else 'red'
+        fg='white' if current_player == 'X' else 'red'  # Solo configurar 'fg' aquí
     )
 
     if check_winner(board, current_player):
@@ -154,6 +153,10 @@ def ask_first_player():
 
 # --- Pantallas del juego ---
 def main_menu():
+    global board, current_player # Declarar variables globales para modificarlas
+    board = init_board()         # Reiniciar el tablero
+    current_player = ' '         # Reiniciar el jugador actual
+
     window.title("Tres en Raya")
     window.configure(bg="#242424")
     window.geometry("575x600")
@@ -205,7 +208,6 @@ def main_menu():
         **button_style
     )
     player_button.pack()
-
 def game_screen():
     global buttons
     for widget in window.winfo_children():
