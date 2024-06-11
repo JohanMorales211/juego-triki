@@ -95,7 +95,7 @@ def make_move(row, col):
     buttons[row][col].config(
         text=current_player,
         state=tk.DISABLED,
-        fg='white' if current_player == 'X' else 'red'  # Solo configurar 'fg' aquí
+        fg='white' if current_player == 'X' else 'red' # Configurar color según el jugador
     )
 
     if check_winner(board, current_player):
@@ -145,7 +145,7 @@ def start_game(mode, first_player='X'):
 
 def ask_first_player():
     global current_player
-    answer = messagebox.askyesno("Tres en Raya", "¿Quieres empezar primero?")
+    answer = messagebox.askyesno("Juego Triki", "¿Quieres empezar primero?")
     if answer:
         start_game("pc", 'X')
     else:
@@ -157,7 +157,7 @@ def main_menu():
     board = init_board()         # Reiniciar el tablero
     current_player = ' '         # Reiniciar el jugador actual
 
-    window.title("Tres en Raya")
+    window.title("Juego Triki")
     window.configure(bg="#242424")
     window.geometry("575x600")
     window.resizable(False, False)
@@ -167,7 +167,7 @@ def main_menu():
 
     title_label = tk.Label(
         window,
-        text="Tres en Raya",
+        text="Juego Triki",
         font=("Arial", 32, "bold"),
         fg="white",
         bg="#242424"
