@@ -129,7 +129,11 @@ def reset_game():
     else:  # Modo de 2 jugadores
         for i in range(3):
             for j in range(3):
-                buttons[i][j].config(text=' ', state=tk.NORMAL)
+                buttons[i][j].config(
+                    text=' ',
+                    state=tk.NORMAL,
+                    fg='white'
+                )
 
 def start_game(mode, first_player='X'):
     global game_mode, current_player
@@ -160,12 +164,21 @@ def main_menu():
 
     title_label = tk.Label(
         window,
-        text="Tres en Raya\nCreador: Johan Morales",
+        text="Tres en Raya",
         font=("Arial", 32, "bold"),
         fg="white",
         bg="#242424"
     )
-    title_label.pack(pady=(50, 30))
+    title_label.pack(pady=(50, 10))
+
+    creator_label = tk.Label(
+        window,
+        text="Creador: Johan Morales",
+        font=("Arial", 20, "bold"),
+        fg="yellow",
+        bg="#242424"
+    )
+    creator_label.pack(pady=(0, 30))
 
     button_style = {
         "font": ("Arial", 24, "bold"),
@@ -213,7 +226,7 @@ def game_screen():
                 width=3,
                 height=1,
                 bg="#4d4d4d",
-                fg="white",
+                fg='white',
                 borderwidth=2,
                 relief="groove",
                 command=lambda r=i, c=j: handle_click(r, c)
