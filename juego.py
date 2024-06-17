@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 import math
 import random
+import time
 
 # --- Lógica del juego ---
 def init_board():
@@ -153,9 +154,9 @@ def ask_first_player():
 
 # --- Pantallas del juego ---
 def main_menu():
-    global board, current_player # Declarar variables globales para modificarlas
-    board = init_board()         # Reiniciar el tablero
-    current_player = ' '         # Reiniciar el jugador actual
+    global board, current_player  # Declarar variables globales para modificarlas
+    board = init_board()          # Reiniciar el tablero
+    current_player = ' '          # Reiniciar el jugador actual
 
     window.title("Juego Triki")
     window.configure(bg="#242424")
@@ -165,14 +166,23 @@ def main_menu():
     for widget in window.winfo_children():
         widget.destroy()
 
+    def animate_text(text, index, speed=50):
+        if index < len(text):
+            title_label.config(text=text[:index])
+            window.after(speed, animate_text, text, index + 1, speed)
+        else:
+            title_label.config(text=text)
+
     title_label = tk.Label(
         window,
-        text="Juego Triki",
+        text="",
         font=("Arial", 32, "bold"),
         fg="white",
         bg="#242424"
     )
     title_label.pack(pady=(50, 10))
+
+    animate_text("Juego Triki", 0)
 
     creator_label = tk.Label(
         window,
